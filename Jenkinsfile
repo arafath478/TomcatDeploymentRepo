@@ -7,6 +7,14 @@ pipeline {
     }
 
     stages {
+        stage('SCM - Checkout') {
+            steps {
+                // Get some code from a GitHub repository
+                git branch: 'stable', url: 'https://github.com/arafath478/TomcatDeploymentRepo.git'
+
+            }
+        
+         }
         
        stage('Build') {
             steps {
