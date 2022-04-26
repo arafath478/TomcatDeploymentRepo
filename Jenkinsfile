@@ -31,8 +31,8 @@ pipeline {
          }
      }
     post{
-        success{
-         echo "build success by yasar arafath shaik"
+        failure{
+         echo "build failed by yasar arafath shaik"
         }  
     }
 }
