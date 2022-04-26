@@ -27,9 +27,12 @@ pipeline {
             steps {
                // Deploy to tomcat server
               deploy adapters: [tomcat9(credentialsId: 'Tomcatadmin', path: '', url: 'http://localhost:9090/')], contextPath: 'DevopsApplication', war: '**/*.war'       
-            }
-        
+                }
          }
-        
+     }
+    post{
+        success{
+         echo "build success by yasar arafath shaik"
+        }  
     }
 }
