@@ -31,11 +31,14 @@ pipeline {
          }
      }
     post{
+        always{
+         echo "Job finished"
+        }
         success{
-         echo "build success by yasar arafath shaik"
+         echo "Build success by yasar arafath"
         }
         failure{
-         echo "build failed by yasar arafath shaik"
+         echo "Build failed by yasar arafath"
         }  
     }
 }
