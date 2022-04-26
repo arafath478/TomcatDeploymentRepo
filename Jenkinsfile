@@ -7,14 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('SCM') {
-            steps {
-                // Get some code from a GitHub repository
-                git branch: 'stable', url: 'https://github.com/arafath478/TomcatDeploymentRepo.git'
-
-            }
         
-         }
        stage('Build') {
             steps {
                 // To run Maven on a Windows agent, use
