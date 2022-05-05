@@ -10,7 +10,7 @@ pipeline {
         stage('SCM - Checkout') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: 'stable', url: 'https://github.com/arafath478/TomcatDeploymentRepo.git'
+                git branch: 'feature', url: 'https://github.com/arafath478/TomcatDeploymentRepo.git'
 
             }
         
@@ -28,7 +28,7 @@ pipeline {
        stage('Deploy') {
             steps {
                // Deploy to tomcat server
-              deploy adapters: [tomcat9(credentialsId: 'Tomcatadmin', path: '', url: 'http://localhost:9090/')], contextPath: 'DevopsApplication', war: '**/*.war'       
+              deploy adapters: [tomcat9(credentialsId: 'Tomcatadmin', path: '', url: 'http://localhost:9090/')], contextPath: 'DevopsAppfeature', war: '**/*.war'       
                 }
          }
      }
