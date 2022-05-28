@@ -25,9 +25,14 @@ pipeline {
         
          }
          stage('Deploy') {
-            steps {
-               deploy adapters: [tomcat8(credentialsId: 'TomcatAdminUser', path: '', url: 'http://35.89.152.212:8090/')], contextPath: 'TomcatApplicationPipeline', war: '**/*.war'
-            }
+//             steps {
+//                deploy adapters: [tomcat8(credentialsId: 'TomcatAdminUser', path: '', url: 'http://35.89.152.212:8090/')], contextPath: 'TomcatApplicationPipeline', war: '**/*.war'
+//             }
+               steps {
+                sshagent(['TomcatServer']) {
+                   sh "scp -o StricHostKeyChecking=no target/TomcatDeploy.war ec2-user@52.41.101.235:/opt/apache-tomcat-8.5.79/webapps"
+                 }
+               }
         
          }
          
