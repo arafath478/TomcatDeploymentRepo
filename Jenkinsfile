@@ -32,9 +32,9 @@ pipeline {
 //                }
 //           deploy to tomcat using scp command
                steps {
-                sshagent(['TomcatServerCredientials']) {
+                 sshagent(['TomcatServerCredientials']) {
                    sh "scp -o StrictHostKeyChecking=no target/TomcatDeploy.war ec2-user@34.211.229.93:/opt/apache-tomcat-8.5.79/webapps"
-                 }
+                  } 
                }
         
          }
