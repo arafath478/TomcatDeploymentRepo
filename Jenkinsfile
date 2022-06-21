@@ -31,12 +31,15 @@ pipeline {
 //                deploy adapters: [tomcat8(credentialsId: 'TomcatAdminUser', path: '', url: 'http://35.89.152.212:8090/')], contextPath: 'TomcatApplicationPipeline', war: '**/*.war'
 //                }
 //           deploy to tomcat using scp command
-               steps {
-                 sshagent(['TomcatServerCredientials']) {
-                   sh "scp -o StrictHostKeyChecking=no target/TomcatDeploy.war ec2-user@34.211.229.93:/opt/apache-tomcat-8.5.79/webapps"
-                  } 
-               }
-        
+//                steps {
+//                  sshagent(['TomcatServerCredientials']) {
+//                    sh "scp -o StrictHostKeyChecking=no target/TomcatDeploy.war ec2-user@34.211.229.93:/opt/apache-tomcat-8.5.79/webapps"
+//                   } 
+//                }
+//           deploy to tomcat using scp command
+                 steps{
+                 sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//home//ansadmin//', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*.war'), sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /home/ansadmin/playbooks/copy_module.yml ', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                 }
          }
          
       
